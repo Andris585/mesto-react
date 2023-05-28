@@ -15,6 +15,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       setUserDescription(about);
       setUserAvatar(avatar);
     })
+    .catch((err) => console.log(err));
   }, [])
 
   React.useEffect(() => {
@@ -22,7 +23,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     .then((cardsInfo) => {
       Object.entries(cardsInfo);
       setCards(cardsInfo);
-    });
+    }).catch((err) => console.log(err));
   }, [])
 
    return (
@@ -44,7 +45,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     <section className="elements" aria-label="фотогалерея профиля">
       <ul className="elements__list">
         {cards.map((card) => (
-          <Card card={card} onCardClick={onCardClick} />
+          <Card card={card} onCardClick={onCardClick} key={card._id}/>
         ))}
       </ul>
     </section>

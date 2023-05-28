@@ -4,8 +4,8 @@ function Card(props) {
   }
 
   return (
-    <li className="elements__item" key={`${props.card._id}`}>
-    <img src={`${props.card.link}`} className="elements__pic" alt="" onClick={handleClick} />
+    <li className="elements__item">
+    <img src={`${props.card.link}`} className="elements__pic" alt={`${props.card.name}`} onClick={handleClick} />
     <button
       className="elements__delete-button button elements__delete-button_inactive"
       type="button"
