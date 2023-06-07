@@ -51,21 +51,21 @@ postNewCard({ name, link }) {
 }
 
 deleteCard(data) {
-  return this._request(`cards/${data}`, {
+  return this._request(`cards/${data._id}`, {
     method: 'DELETE',
     headers: this.headers
   });
 }
 
-toggleLikeButton(data, userId) {
-  if (data.likes.find(item => item._id === userId))
+toggleLikeButton(id, isLiked) {
+  if (!isLiked)
   {
-    return this._request(`cards/${data._id}/likes`, {
+    return this._request(`cards/${id}/likes`, {
       method: 'DELETE',
       headers: this.headers
     });
   }
-  return this._request(`cards/${data._id}/likes`, {
+  return this._request(`cards/${id}/likes`, {
     method: 'PUT',
     headers: this.headers
   });
@@ -75,9 +75,7 @@ changeAvatar(data) {
   return this._request('users/me/avatar', {
     method: 'PATCH',
     headers: this.headers,
-    body: JSON.stringify({
-      avatar: data.link
-    })
+    body: JSON.stringify(data)
   });
 }
 }
